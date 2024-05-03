@@ -109,27 +109,7 @@ cursor = conn.execute(
 for row in cursor:
     print(row)
 
-conn.execute(
-    """
-    UPDATE PLATOS
-    SET precio = 9.99
-    WHERE id = 3
-    """
-)
-conn.execute(
-    """
-    UPDATE PLATOS
-    SET categoria = 'fusion'
-    WHERE id = 3
-    """
-)
 
-conn.execute(
-    """
-    DELETE FROM PEDIDOS
-    WHERE id = 3
-    """
-)
 
 
 #listar

@@ -12,12 +12,28 @@ conn.execute(
     """
 )
 
-conn.execute(
-    """SELECT ESTUDIANTES.nombre, ESTUDIANTES.apellido, CARRERAS.nombre, MATRICULACION.fecha
-    FROM MATRICULACION 
-    JOIN ESTUDIANTES ON MATRICULACION.estudiante_id = ESTUDIANTES.id
-    JOIN CARRERAS ON MATRICULACION.carrera_id = CARRERAS.id
+print("\nMATRICULAS: INNER JOIN")
+cursor = conn.execute(
+    """
+    SELECT ESTUDIANTES.nombre, ESTUDIANTES.apellido, CARRERAS.nombre, MATRICULAS.fecha 
+    FROM MATRICULAS
+    JOIN ESTUDIANTES ON MATRICULAS.estudiante_id = ESTUDIANTES.id 
+    JOIN CARRERAS ON MATRICULAS.carrera_id = CARRERAS.id
     """
 )
+for row in cursor:
+    print(row)
+
+print("\nMATRICULAS LEFT JOIN:")
+cursor = conn.execute(
+    """
+    SELECT CARRERAS.nombre, ESTUDIANTES.nombre
+    FROM CARRERAS
+    LEFT JOIN MATRICULAS ON CARRERAS.id = MATRICULAS.carrera_id
+    LEFT JOIN ESTUDIANTES ON MATRICULAS.estudiante_id = ESTUDIANTES.id;
+    """
+)
+for row in cursor:
+    print(row)
 conn.commit()
 conn.close()
