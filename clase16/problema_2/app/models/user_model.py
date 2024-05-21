@@ -14,7 +14,7 @@ class User(UserMixin, db.Model):
 
     def __init__(self, username, password, roles=["user"]):
         self.username = username
-        self.roles = json.dumps(roles)#vualve cualquier estructura de datos en una cadena
+        self.roles = json.dumps(roles)
         self.password_hash = generate_password_hash(password)
 
     def save(self):

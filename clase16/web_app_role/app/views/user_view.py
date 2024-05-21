@@ -46,4 +46,3 @@ def perfil(user):
     return render_template(
         "profile.html", title="Perfil de usuario", current_user=current_user, user=user
     )
-
